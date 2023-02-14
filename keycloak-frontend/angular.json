@@ -56,6 +56,34 @@
                   "maximumError": "10kb"
                 }
               ]
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true,
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.dev.ts"
+                }
+              ]
+            },
+            "local": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true,
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.local.ts"
+                }
+              ]
             }
           }
         },
@@ -67,6 +95,12 @@
           "configurations": {
             "production": {
               "browserTarget": "keycloak-frontend:build:production"
+            },
+            "development": {
+              "browserTarget": "keycloak-frontend:build:development"
+            },
+            "local": {
+              "browserTarget": "keycloak-frontend:build:local"
             }
           }
         },
@@ -119,6 +153,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "keycloak-frontend"
+    }
+  },
+  "defaultProject": "keycloak-frontend",
+  "cli": {
+    "analytics": "d509cc2c-30bc-4dc0-bda1-ba8a4df9e5c9"
+  }
 }

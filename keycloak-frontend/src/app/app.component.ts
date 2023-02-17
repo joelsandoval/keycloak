@@ -24,12 +24,13 @@ export class AppComponent {
   }
 
   authConfig: AuthConfig = {
-    issuer: 'http://localhost:8180/auth/realms/tutorial',
+    issuer: 'http://e-scan.ovh:8180/realms/tutorial',
     redirectUri: window.location.origin,
     clientId: 'tutorial-frontend',
     responseType: 'code',
     scope: 'openid profile email offline_access',
     showDebugInformation: true,
+    requireHttps: false
   };
 
   configure(): void {

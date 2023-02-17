@@ -16,10 +16,14 @@ import org.springframework.stereotype.Service;
 
 import javax.ws.rs.core.Response;
 import java.util.Arrays;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @Service
 public class KeycloakService {
-
+    
+    private static final Logger LOGGER = LoggerFactory.getLogger(KeycloakService.class);
+    
     @Value("${keycloak.auth-server-url}")
     private String server_url;
 
@@ -60,6 +64,7 @@ public class KeycloakService {
                  message.setMessage("error creando el usuario");
              }
          }catch (Exception e){
+             LOGGER.error("falló miserablemente en {}", server_url);
              e.printStackTrace();
          }
 

@@ -11,12 +11,16 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @RestController
 @RequestMapping("/foo")
 @CrossOrigin
 public class FooController {
 
+    private static final Logger LOGGER = LoggerFactory.getLogger(FooController.class);
+    
     List<Foo> foos =
             Stream.of(new Foo(1, "foo 1"),
                     new Foo(2, "foo 2"),
@@ -25,12 +29,14 @@ public class FooController {
     @GetMapping("/list")
     @RolesAllowed("backend-user")
     public ResponseEntity<List<Foo>> list(){
+        LOGGER.info("Entró a buscar la lista");
         return new ResponseEntity(foos, HttpStatus.OK);
     }
 
     @RolesAllowed("backend-user")
     @GetMapping("/detail/{id}")
     public ResponseEntity<Foo> detail(@PathVariable("id") int id){
+        LOGGER.info("Entró a buscar el detalle");
         Foo foo = foos.stream().filter(f -> f.getId() == id).findFirst().orElse(null);
         return new ResponseEntity(foo, HttpStatus.OK);
     }
